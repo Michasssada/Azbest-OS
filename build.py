@@ -20,7 +20,7 @@ try:
     os.system(f"i686-elf-gcc -T linker.ld -o build/Azbest_OS.bin -ffreestanding -O2 -nostdlib asm/boot.o {link}  -lgcc -L/include")
     os.system("mv build/Azbest_OS.bin iso/boot")
     os.system(f"rm {link}")
-    
+    os.system("grub-mkrescue -o build/Azbest_OS.iso iso")
 except Exception as e:
     print(f"linking failded \n {e}")
 finally:
