@@ -1,0 +1,3 @@
+/home/michas/Azbest_OS/build/CMakeFiles/kernel.bin.dir
+/home/michas/Azbest_OS/build/CMakeFiles/edit_cache.dir
+/home/michas/Azbest_OS/build/CMakeFiles/rebuild_cache.dir

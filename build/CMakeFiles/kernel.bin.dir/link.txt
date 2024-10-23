@@ -1,0 +1,1 @@
+i636-elf-gcc -ffreestanding -m32 -nostdlib -Wall -Wextra -T linker.ld -nostdlib -lgcc CMakeFiles/kernel.bin.dir/src/kernel.c.o -o kernel.bin
