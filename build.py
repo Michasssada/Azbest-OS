@@ -1,3 +1,4 @@
+# to use the custom file. the custom file still must be in src directory but can be in a folder in src
 import os
 directory_path = os.getcwd()+"/src"
 build_ignore = open("build_ignore.txt", "r")
