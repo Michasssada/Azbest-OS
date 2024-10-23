@@ -2,8 +2,11 @@ import os
 directory_path = os.getcwd()+"/src"
 build_ignore = open("build_ignore.txt", "r")
 build_ignore_names = [line.strip() for line in build_ignore]
+build_custom = open("build_file_custom.txt", "r")
+build_custom_names = [line.strip() for line in build_ignore]
 file_names_unfiltred = [os.path.splitext(file)[0] for file in os.listdir(directory_path) if os.path.isfile(os.path.join(directory_path, file))]
 file_names = [item for item in file_names_unfiltred if item not in build_ignore_names]
+file_names.extend(build_custom_names)
 for i in range(len(file_names)):
     print(file_names[i])
     try:
