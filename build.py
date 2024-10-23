@@ -36,6 +36,6 @@ try:
     if exit_code != 0:
         raise RuntimeError(f"Command failed with exit code {exit_code}")
 except RuntimeError as e:
-    print(f"linking failded \n {e}")
+    print(f"failded \n {e}")
 finally:
     print("ISO generated successfully")
