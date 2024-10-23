@@ -5,7 +5,9 @@ file_names = [os.path.splitext(file)[0] for file in os.listdir(directory_path) i
 for i in range(len(file_names)):
     print(file_names[i])
     try:
-        os.system(f"i686-elf-gcc -c {os.getcwd() + "/src/" + file_names[i]+".c"}  -o {file_names[i]+".o"} -std=gnu99 -ffreestanding -O2 -Wall -Wextra -L/include")
+        exit_code = os.system(f"i686-elf-gcc -c {os.getcwd() + "/src/" + file_names[i]+".c"}  -o {"build/"+file_names[i]+".o"} -std=gnu99 -ffreestanding -O2 -Wall -Wextra -L/include")
+        if exit_code != 0:
+            raise RuntimeError(f"Command failed with exit code {exit_code}")
     except Exception as e:
         print(f"compilation process failded with \n{e}")
     finally:
@@ -13,10 +15,12 @@ for i in range(len(file_names)):
 
 try:
     link_array = [f"{item}.o" for item in file_names]
-    link = ' '.join(link_array)
-    print("linking started")
-    print(link)
-    #os.system(f"i686-elf-gcc -T linker.ld -o Azbest_OS.bin -ffreestanding -O2 -nostdlib asm/boot.o {link_array}  -lgcc -L/include")
+    link = ' '.join([f"build/{item}" for item in link_array])
+    print(f"linking {link}")
+    os.system(f"i686-elf-gcc -T linker.ld -o build/Azbest_OS.bin -ffreestanding -O2 -nostdlib asm/boot.o {link}  -lgcc -L/include")
+    os.system("mv build/Azbest_OS.bin iso/boot")
+    os.system(f"rm {link}")
+    
 except Exception as e:
     print(f"linking failded \n {e}")
 finally:
