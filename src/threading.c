@@ -1,6 +1,6 @@
 #include "../include/threading.h"
 
-typedef void (*TaskFunc)(void);
+
 
 // Task control block
 typedef struct {
