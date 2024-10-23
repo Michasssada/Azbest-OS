@@ -25,6 +25,9 @@ void check_command(){
     else if(strcmp(input,"clear")==0){
         clearScreen();
     }
+    else if(strcmp(input,"set color")==0){
+        setColor();
+    }
     else
     {
         terminal_setcolor(4);
@@ -43,5 +46,30 @@ void azbest_data(){
 void help(){
     sysPrint("clear - clears the screen\n");
     sysPrint("sys data - prints data about OS.\n");
+    sysPrint("set color - sets color.\n");
      
+}
+void setColor(){
+    sysPrint("colors: VGA_COLOR_BLUE = 1, VGA_COLOR_GREEN = 2, VGA_COLOR_CYAN = 3, VGA_COLOR_LIGHT_GREEN = 4");
+    clear_buffer();
+    char color[3];
+    sysPrint("enter color");
+    while (!isEnterPressed)
+    {
+
+        getInput(color);
+    }
+    if(strcmp(color,"1")){
+        setColor(1);
+    }else if(strcmp(color,"2")){
+        setColor(2);
+
+    }else if(strcmp(color,"3")){
+        setColor(3);
+    }else if(strcmp(color,"4")){
+        setColor(10);
+    }else{
+        sysPrint("no such command");
+    }
+    
 }

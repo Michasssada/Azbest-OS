@@ -12,3 +12,4 @@ enum vga_color;
 extern size_t terminal_row;
 extern size_t terminal_column;
 extern uint8_t terminal_color;
+extern bool isEnterPressed;

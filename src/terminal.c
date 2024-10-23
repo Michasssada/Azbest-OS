@@ -1,7 +1,7 @@
 
 #include "../include/terminal.h"
 void terminal_putchar(char c);
-
+bool isEnterPressed = false;
 enum vga_color {
 	VGA_COLOR_BLACK = 0,
 	VGA_COLOR_BLUE = 1,
@@ -77,8 +77,12 @@ void terminal_putchar(char c)
 	if (c == '\n') {
         terminal_row++;
         terminal_column = 0;
+		isEnterPressed = true;
         return;
     }
+	else{
+		isEnterPressed = false;
+	}
 	terminal_putentryat(c, terminal_color, terminal_column, terminal_row);
 	if (++terminal_column == VGA_WIDTH) {
 		terminal_column = 0;
