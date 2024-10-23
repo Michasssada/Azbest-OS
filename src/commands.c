@@ -73,6 +73,6 @@ void azbest_data(){
 void help(){
     sysPrint("clear - clears the screen\n");
     sysPrint("sys data - prints data about OS.\n");
-    sysPrint("set color - sets color.\n");
+    sysPrint("set color - sets color.function is currently unavailble. it will be availble as soon as posible\n");
      
 }
