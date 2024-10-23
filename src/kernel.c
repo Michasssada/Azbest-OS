@@ -35,6 +35,7 @@ static inline uint8_t inb(uint16_t port) {
     __asm__ volatile ("inb %1, %0" : "=a"(result) : "Nd"(port));
     return result;
 }
+
 void init(){
     terminal_initialize();
     terminal_setcolor(11);
