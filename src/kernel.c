@@ -10,26 +10,6 @@
 static inline void outw(uint16_t port, uint16_t val) {
     __asm__ volatile ("outw %0, %1" : : "a"(val), "Nd"(port));
 }
-
-
-void shutdown() {
-    // QEMU supports shutdown via I/O port 0x604
-    outw(0x604, 0x2000);
-    
-    // If not running in QEMU, the next method can be a fallback
-    // Writing to ACPI PM1a control block (port 0xB004 on some systems)
-    outw(0xB004, 0x2000); // This is system-specific and may vary
-
-    // You can also use the keyboard controller (older approach)
-    // outw(0x604, 0x2000); // For some other systems (e.g., virtual machines)
-    
-    // Halt the CPU as a last resort
-    __asm__ volatile("hlt");
-}
-/* I/O port commands */
-
-
-
 static inline uint8_t inb(uint16_t port) {
     uint8_t result;
     __asm__ volatile ("inb %1, %0" : "=a"(result) : "Nd"(port));
@@ -45,6 +25,7 @@ void init(){
 
 void kernel_main(void) 
 {
+    init();
 	
     char input[256];
 
