@@ -19,7 +19,7 @@ void clear_buffer(){
     for (size_t i = 0; i < strlen(input_char); i++) {
         input_char[i] = '\0'; // Set each character to null
     }
-    terminal_writestring("\n");  
+    terminal_writestring("\n> ");  
 }
 
 static inline void outw(uint16_t port, uint16_t val) {

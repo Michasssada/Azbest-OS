@@ -19,8 +19,9 @@ static inline uint8_t inb(uint16_t port) {
 void init(){
     terminal_initialize();
     terminal_setcolor(11);
-    terminal_writestring("Welcome to Azbest OS! ver:"OS_VERSION"\n");
+    terminal_writestring("Welcome to Azbest OS! ver:"OS_VERSION".no rights reserved hehe\n");
     terminal_setcolor(10);   
+    terminal_writestring("> ");
 }
 
 void kernel_main(void) 
