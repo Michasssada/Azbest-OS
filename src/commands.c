@@ -59,6 +59,7 @@ void setColor(){
 void check_command(){
     getInput(input);
     if(strcmp(input,"sys data")==0){
+        //for testing crash reaction
         char test[100];
         int testi = 0/0;
         intToStr(testi,test,0);
