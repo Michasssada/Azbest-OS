@@ -13,7 +13,6 @@ parser = argparse.ArgumentParser(description="Example of adding custom flags.")
 parser.add_argument('-b', '--boot', action='store_true', help="boots the os.")
 args = parser.parse_args()
 exit_code = os.system("i686-elf-as -o asm/boot.o asm/boot.s")
-exit_code = os.system("i686-elf-as -o asm/boot.o asm/boot.s")
 if exit_code != 0:
     print(f"compiling asembly failed with code {exit_code}")
     quit()
