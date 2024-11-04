@@ -8,7 +8,11 @@ build_custom_names = [line.strip() for line in build_ignore]
 file_names_unfiltred = [os.path.splitext(file)[0] for file in os.listdir(directory_path) if os.path.isfile(os.path.join(directory_path, file))]
 file_names = [item for item in file_names_unfiltred if item not in build_ignore_names]
 file_names.extend(build_custom_names)
-os.system("i686-elf-as asm/boot.o asm/boot.asm")
+
+exit_code = os.system("i686-elf-as -o asm/boot.o asm/boot.s")
+if exit_code != 0:
+    print(f"compiling asembly failed with code {exit_code}")
+    quit()
 for i in range(len(file_names)):
     print(file_names[i])
     try:
@@ -17,6 +21,7 @@ for i in range(len(file_names)):
             raise RuntimeError(f"Command failed with exit code {exit_code}")
     except RuntimeError as e:
         print(f"compilation process failded with \n{e}")
+        quit()
     finally:
         print("compilation succeded")
 
@@ -27,6 +32,7 @@ try:
     exit_code = os.system(f"i686-elf-gcc -T linker.ld -o build/Azbest_OS.bin -ffreestanding -O2 -nostdlib asm/boot.o {link}  -lgcc -L/include")
     if exit_code != 0:
         raise RuntimeError(f"Command failed with exit code {exit_code}")
+        quit()
     exit_code = os.system("mv build/Azbest_OS.bin iso/boot")
     if exit_code != 0:
         raise RuntimeError(f"Command failed with exit code {exit_code}")
@@ -38,5 +44,6 @@ try:
         raise RuntimeError(f"Command failed with exit code {exit_code}")
 except RuntimeError as e:
     print(f"failded \n {e}")
+    quit()
 finally:
     print("ISO generated successfully")
