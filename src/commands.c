@@ -2,7 +2,6 @@
 #include "../include/terminal.h"
 #include "../include/stdlib.h"
 #include "../include/commands.h"
-#include "../include/threading.h"
 #include <stddef.h>
 
 char input[256];

@@ -40,19 +40,17 @@ void init(){
     terminal_initialize();
     terminal_setcolor(11);
     terminal_writestring("Welcome to Azbest OS! ver:"OS_VERSION"\n");
-    terminal_setcolor(10);
+    terminal_setcolor(10);   
 }
 
 void kernel_main(void) 
 {
-    init();	/* Initialize terminal interface */
 	
     char input[256];
 
 
 
 	while(1){
-        keyboard_handler();
-		
+		keyboard_handler();
 	}
 }
