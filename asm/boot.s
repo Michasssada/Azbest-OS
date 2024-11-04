@@ -86,6 +86,8 @@ _start:
 	preserved and the call is well defined.
 	*/
 	call kernel_main
+    hlt                ; Halt the CPU if the shutdown command fails           
+
 /*
 Set the size of the _start symbol to the current location '.' minus its start.
 This is useful when debugging or when you implement call tracing.
