@@ -1,2 +1,3 @@
 .vscode
 iso/build/Azbest_OS.bin
+*.o
