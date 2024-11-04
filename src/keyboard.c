@@ -5,6 +5,7 @@
 #include "../include/terminal.h"
 #include "../include/stdlib.h"
 #include "../include/commands.h"
+#include "../include/defines.h"
 static const size_t VGA_WIDTH = 80;
 static const size_t VGA_HEIGHT = 25;
 char input_char[256];
@@ -110,7 +111,7 @@ void keyboard_handler(void) {
             handle_keypress(key);  // Handle the keypress by storing the char and displaying it
         }
     }
-	delay(400000);
+	delay(KEYBOARD_DELAY_CLICK);
 }
 
 
