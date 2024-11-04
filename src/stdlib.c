@@ -105,3 +105,15 @@ void StrCpy(char *destination, const char *source) {
     }
     *destination = '\0';     // Null-terminate the destination string
 }
+int toInt(const char *str) {
+    int result = 0;
+    while (*str) {
+        // Check if the character is a digit
+        if (*str < '0' || *str > '9') {
+            break; // Non-digit character found, stop parsing
+        }
+        result = result * 10 + (*str - '0');
+        str++;
+    }
+    return result;
+}
