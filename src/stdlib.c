@@ -1,4 +1,5 @@
 #include "../include/stdlib.h"
+#include "../include/commands.h"
 int strcmp(const char* str1, const char* str2) {
     while (*str1 && (*str1 == *str2)) {
         str1++;
@@ -45,7 +46,7 @@ void intToStr(int value, char* buffer, int base) {
 void sysPrint(char *in){
     terminal_setcolor(15);
     terminal_writestring(in);
-    terminal_setcolor(10);
+    terminal_setcolor(user_input_color);
 }
 void clearScreen(){
     terminal_initialize();
