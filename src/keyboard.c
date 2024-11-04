@@ -110,7 +110,7 @@ void keyboard_handler(void) {
             handle_keypress(key);  // Handle the keypress by storing the char and displaying it
         }
     }
-	delay(60000);
+	delay(400000);
 }
 
 
