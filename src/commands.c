@@ -5,6 +5,15 @@
 #include <stddef.h>
 
 char input[256];
+
+bool compareSomeChars(const char *str1, const char *str2, int HowMany) {
+    for (int i = 0; i < HowMany; i++) {
+        if (str1[i] != str2[i]) {
+            return false; // Characters do not match
+        }
+    }
+    return true; // First five characters match
+}
 char commands[10][10] = {
         "sys data. get OS and computer data \n",
         "clear clears screen`",
@@ -13,27 +22,11 @@ char commands[10][10] = {
         "String5"
 };
 void setColor(){
-    sysPrint("colors: VGA_COLOR_BLUE = 1, VGA_COLOR_GREEN = 2, VGA_COLOR_CYAN = 3, VGA_COLOR_LIGHT_GREEN = 4");
-    clear_buffer();
-
-    char color[3]; // Buffer to hold user input
-    sysPrint("Enter color (1-4): ");
-    
-    while (!isEnterPressed) {
-        getInput(color); // Get user input
+    if(input[11] != "\n"){
+        
     }
-    
-    // Compare input to set color
-    if (strcmp(color, "1") == 0) {
-        setColor(1); // Set color to VGA_COLOR_BLUE
-    } else if (strcmp(color, "2") == 0) {
-        setColor(2); // Set color to VGA_COLOR_GREEN
-    } else if (strcmp(color, "3") == 0) {
-        setColor(3); // Set color to VGA_COLOR_CYAN
-    } else if (strcmp(color, "4") == 0) {
-        setColor(10); // Set color to VGA_COLOR_LIGHT_GREEN
-    } else {
-        sysPrint("No such command");
+    else{
+        sysPrint("color not specified");
     }
     
 }
@@ -49,10 +42,8 @@ void check_command(){
     else if(strcmp(input,"clear")==0){
         clearScreen();
     }
-    else if(strcmp(input,"set color")==0){
-        //create_task(setColor);
-        //scheduler();
-        sysPrint("that func isn't implemented");
+    else if(compareSomeChars(input,"set color",9)){
+        setColor();
     }
     else
     {
