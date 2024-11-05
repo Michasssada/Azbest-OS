@@ -33,15 +33,6 @@ bool compareSomeChars(const char *str1, const char *str2, int HowMany) {
     }
     return true; // First five characters match
 }
-
-
-char commands[10][10] = {
-        "sys data. get OS and computer data \n",
-        "clear clears screen`",
-        "String3",
-        "String4",
-        "String5"
-};
 void setColor(){
     if(input[11] != "\n"){
        int color = Int(input[11]);
@@ -66,6 +57,10 @@ void check_command(){
         
     }else if(strcmp(input,"help")==0){
         help();
+        int test = 0/0;
+        char testchar[20];
+        intToStr(test,testchar,0);
+        sysPrint(testchar);
     }
     else if(strcmp(input,"clear")==0){
         clearScreen();
