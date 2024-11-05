@@ -42,7 +42,7 @@ char commands[10][10] = {
 };
 void setColor(){
     if(input[11] != "\n"){
-       int color = toInt(input[11]);
+       int color = Int(input[11]);
        if(color = 0){
         user_input_color = VGA_COLOR_LIGHT_GREEN;
         terminal_setcolor(VGA_COLOR_LIGHT_GREEN);
@@ -59,11 +59,6 @@ void setColor(){
 void check_command(){
     getInput(input);
     if(strcmp(input,"sys data")==0){
-        //for testing crash reaction
-        char test[100];
-        int testi = 0/0;
-        intToStr(testi,test,0);
-        sysPrint(test);
         azbest_data();
         
         
