@@ -33,6 +33,8 @@ bool compareSomeChars(const char *str1, const char *str2, int HowMany) {
     }
     return true; // First five characters match
 }
+
+
 char commands[10][10] = {
         "sys data. get OS and computer data \n",
         "clear clears screen`",
@@ -58,8 +60,8 @@ void setColor(){
 }
 void check_command(){
     getInput(input);
-    if(strcmp(input,"sys data")==0){
-        azbest_data();
+    if(strcmp(input,"azbestfetch")==0){
+        azbestFetch();
         
         
     }else if(strcmp(input,"help")==0){
@@ -78,9 +80,9 @@ void check_command(){
         terminal_setcolor(user_input_color);
     }
 }
-void azbest_data(){
+void azbestFetch(){
 
-    char ram[21];
+    char ram[210];
     sysPrint("Azbest OS ");
     sysPrint(OS_VERSION);
     sysPrint("\n");
@@ -88,7 +90,7 @@ void azbest_data(){
 }
 void help(){
     sysPrint("clear - clears the screen\n");
-    sysPrint("sys data - prints data about OS.\n");
+    sysPrint("azbestfetch - prints data about OS. basically azbest os version of neofetch :).\n");
     sysPrint("set color - sets color of user input.\n light green = 0, green = 1");
      
 }

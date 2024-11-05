@@ -106,7 +106,7 @@ void StrCpy(char *destination, const char *source) {
     }
     *destination = '\0';     // Null-terminate the destination string
 }
-int toInt(const char *str) {
+int Int(const char *str) {
     int result = 0;
     while (*str) {
         // Check if the character is a digit
