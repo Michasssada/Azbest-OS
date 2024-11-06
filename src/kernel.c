@@ -32,11 +32,7 @@ void init(){
 void kernel_main(void) 
 {
     init();
-	
     char input[256];
-
-
-
 	while(1){
 		keyboard_handler();
 	}
