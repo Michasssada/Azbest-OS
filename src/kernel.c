@@ -3,6 +3,7 @@
 #include "../include/kernel.h"
 #include "../include/stdlib/stdlib.h"
 #include "../include/defines.h"
+#include "../include/IDT.h"
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
@@ -19,6 +20,7 @@ static inline uint8_t inb(uint16_t port) {
 }
 
 void init(){
+    init_idt();
     init_heap();
     terminal_initialize();
     terminal_setcolor(11);

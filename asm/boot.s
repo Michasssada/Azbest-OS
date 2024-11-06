@@ -19,7 +19,12 @@ stack_top:
 .section .text
 .global _start
 .type _start, @function
-
+.global isr_handler
+isr_handler:
+    pusha
+    // Your ISR code here (e.g., log the interrupt)
+    popa
+    iret
 _start:
 	mov $stack_top, %esp
 	call kernel_main
