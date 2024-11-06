@@ -1,5 +1,6 @@
 #include "../include/terminal.h"
 #include "../include/keyboard.h"
+#include "../include/kernel.h"
 #include "../include/stdlib/stdlib.h"
 #include <stdbool.h>
 #include <stddef.h>
