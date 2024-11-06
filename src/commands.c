@@ -60,7 +60,7 @@ void check_command(){
         help();
     }
     else if(strcmp(input,"clear")==0){
-        clearScreen();
+        terminal_clear();
     }
     else if(compareSomeChars(input,"set color",9)){
         setColor();

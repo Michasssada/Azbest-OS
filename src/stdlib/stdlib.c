@@ -48,9 +48,6 @@ void Printf(char *in){
     terminal_writestring(in);
     terminal_setcolor(user_input_color);
 }
-void clearScreen(){
-    terminal_initialize();
-}
 // Function to read the Time Stamp Counter
 static inline uint64_t read_tsc() {
     uint32_t lo, hi;
