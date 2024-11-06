@@ -1,2 +1,2 @@
-typedef unsigned int size_t;
+#include "stddef.h"
 void* malloc(size_t size);

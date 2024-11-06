@@ -65,9 +65,7 @@ void check_command(){
     else if(compareSomeChars(input,"set color",9)){
         setColor();
     }
-    else if(strcmp(input,"mem test")==0){
-        void* test = malloc(128);
-        free(test);
+    else if(strcmp(input,"test")==0){
     }
     else
     {

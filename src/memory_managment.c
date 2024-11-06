@@ -2,7 +2,6 @@
 #include "../include/stdlib/free.h"
 #include "../include/stdlib/malloc.h"
 #include "../include/kernel.h"
-#define NULL ((void*)0)
 
 #define HEAP_SIZE 1024  // Define the heap size
 #define BLOCK_SIZE 32   // Define the block size for memory allocation
