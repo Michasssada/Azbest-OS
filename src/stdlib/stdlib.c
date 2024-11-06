@@ -1,5 +1,5 @@
-#include "../include/stdlib.h"
-#include "../include/commands.h"
+#include "../../include/stdlib/stdlib.h"
+#include "../../include/commands.h"
 int strcmp(const char* str1, const char* str2) {
     while (*str1 && (*str1 == *str2)) {
         str1++;

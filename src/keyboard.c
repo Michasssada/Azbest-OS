@@ -3,7 +3,7 @@
 #include <stdint.h>
 #include "../include/keyboard.h"
 #include "../include/terminal.h"
-#include "../include/stdlib.h"
+#include "../include/stdlib/stdlib.h"
 #include "../include/commands.h"
 #include "../include/defines.h"
 static const size_t VGA_WIDTH = 80;

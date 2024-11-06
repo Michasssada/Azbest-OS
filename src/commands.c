@@ -1,6 +1,6 @@
 #include "../include/keyboard.h"
 #include "../include/terminal.h"
-#include "../include/stdlib.h"
+#include "../include/stdlib/stdlib.h"
 #include "../include/commands.h"
 #include <stddef.h>
 enum vga_color {

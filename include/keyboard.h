@@ -1,5 +1,5 @@
 #include <stddef.h>
-#include "../include/stdlib.h"
+#include "../include/stdlib/stdlib.h"
 void keyboard_handler(void);
 void append_char(char* str, char c, size_t* len, size_t max_len);
 void handle_keypress(char c);
