@@ -2,6 +2,7 @@
 #include "../include/keyboard.h"
 #include "../include/kernel.h"
 #include "../include/stdlib/stdlib.h"
+#include "../include/defines.h"
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>

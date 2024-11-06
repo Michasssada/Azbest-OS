@@ -1,5 +1,6 @@
 #include "../include/keyboard.h"
 #include "../include/terminal.h"
+#include "../include/defines.h"
 #include "../include/stdlib/stdlib.h"
 #include "../include/commands.h"
 #include <stddef.h>
@@ -57,16 +58,16 @@ void check_command(){
         
     }else if(strcmp(input,"help")==0){
         help();
-        int test = 0/0;
-        char testchar[20];
-        intToStr(test,testchar,0);
-        sysPrint(testchar);
     }
     else if(strcmp(input,"clear")==0){
         clearScreen();
     }
     else if(compareSomeChars(input,"set color",9)){
         setColor();
+    }
+    else if(strcmp(input,"mem test")==0){
+        void* test = malloc(128);
+        free(test);
     }
     else
     {
