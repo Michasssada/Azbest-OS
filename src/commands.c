@@ -69,6 +69,7 @@ void check_command(){
     }
     else
     {
+        String testBuffer;
         terminal_setcolor(error_output_color);
         terminal_writestring("no such command. enter help for more info");
         terminal_setcolor(user_input_color);

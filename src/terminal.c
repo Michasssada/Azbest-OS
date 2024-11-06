@@ -60,7 +60,17 @@ void terminal_initialize(void)
 		}
 	}
 }
-
+void terminal_clear() {
+    for (size_t y = 0; y < VGA_HEIGHT; y++) {
+        for (size_t x = 0; x < VGA_WIDTH; x++) {
+            const size_t index = y * VGA_WIDTH + x;
+            terminal_buffer[index] = vga_entry(' ', terminal_color);
+        }
+    }
+    // Reset cursor position after clearing
+    terminal_row = 0;
+    terminal_column = 0;
+}
 void terminal_setcolor(uint8_t color) 
 {
 	terminal_color = color;
@@ -88,6 +98,9 @@ void terminal_putchar(char c)
 		terminal_column = 0;
 		if (++terminal_row == VGA_HEIGHT)
 			terminal_row = 0;
+	}
+	if(terminal_row >= 24){
+		terminal_clear();
 	}
 }
 
