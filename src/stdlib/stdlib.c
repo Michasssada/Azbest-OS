@@ -43,7 +43,7 @@ void intToStr(int value, char* buffer, int base) {
     buffer[i] = '\0'; // Null-terminate the string
 }
 
-void Printf(char *in){
+void printf(char *in){
     terminal_setcolor(15);
     terminal_writestring(in);
     terminal_setcolor(user_input_color);
