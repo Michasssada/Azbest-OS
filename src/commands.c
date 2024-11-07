@@ -46,7 +46,7 @@ void setColor(){
        }
     }
     else{
-        Printf("color not specified");
+        printf("color not specified");
     }
     
 }
@@ -78,14 +78,14 @@ void check_command(){
 void azbestFetch(){
 
     char ram[210];
-    Printf("Azbest OS ");
-    Printf(OS_VERSION);
-    Printf("\n");
+    printf("Azbest OS ");
+    printf(OS_VERSION);
+    printf("\n");
 
 }
 void help(){
-    Printf("clear - clears the screen\n");
-    Printf("azbestfetch - prints data about OS. basically azbest os version of neofetch :).\n");
-    Printf("set color - sets color of user input.\n light green = 0, green = 1");
+    printf("clear - clears the screen\n");
+    printf("azbestfetch - prints data about OS. basically azbest os version of neofetch :).\n");
+    printf("set color - sets color of user input.\n light green = 0, green = 1");
      
 }
