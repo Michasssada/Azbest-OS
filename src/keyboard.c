@@ -2,42 +2,11 @@
 #include <stddef.h>
 #include <stdint.h>
 #include "../include/keyboard.h"
-#include "../include/terminal.h"
-#include "../include/stdlib/stdlib.h"
-#include "../include/commands.h"
-#include "../include/defines.h"
+
+
 static const size_t VGA_WIDTH = 80;
 static const size_t VGA_HEIGHT = 25;
 char input_char[256];
-static inline void outb(uint16_t port, uint8_t value) {
-    __asm__ volatile ("outb %0, %1" : : "a"(value), "Nd"(port));
-}
-size_t input_len = 0;              // Current length of the input
-/* Keyboard scancode mapping (partial, for simplicity) */
-void clear_buffer(){
-    input_len = 0;
-    for (size_t i = 0; i < strlen(input_char); i++) {
-        input_char[i] = '\0'; // Set each character to null
-    }
-    terminal_writestring("\n> ");  
-}
-
-static inline void outw(uint16_t port, uint16_t val) {
-    __asm__ volatile ("outw %0, %1" : : "a"(val), "Nd"(port));
-}
-static inline uint8_t inb(uint16_t port) {
-    uint8_t result;
-    __asm__ volatile ("inb %1, %0" : "=a"(result) : "Nd"(port));
-    return result;
-}
-void append_char(char* str, char c, size_t* len, size_t max_len) {
-    if (*len + 1 < max_len) {
-        str[*len] = c;      // Add the new character at the end
-        (*len)++;           // Update the length of the string
-        str[*len] = '\0';   // Add the null-terminator
-    }
-}
-
 static const char scancode_to_char[] = {
     0,  27, '1', '2', '3', '4', '5', '6', '7', '8',    /* 0x00 - 0x09 */
     '9', '0', '-', '=', '\b', /* Backspace */
@@ -54,12 +23,43 @@ static const char scancode_to_char[] = {
     0,    /* Caps lock */
     /* F1 - F12 keys not mapped here for simplicity */
 };
+
+static inline void outw(uint16_t port, uint16_t val) {
+    __asm__ volatile ("outw %0, %1" : : "a"(val), "Nd"(port));
+}
+static inline uint8_t inb(uint16_t port) {
+    uint8_t result;
+    __asm__ volatile ("inb %1, %0" : "=a"(result) : "Nd"(port));
+    return result;
+}
+static inline void outb(uint16_t port, uint8_t value) {
+    __asm__ volatile ("outb %0, %1" : : "a"(value), "Nd"(port));
+}
+size_t input_len = 0;              // Current length of the input
+/* Keyboard scancode mapping (partial, for simplicity) */
+void clear_buffer(){
+    input_len = 0;
+    for (size_t i = 0; i < strlen(input_char); i++) {
+        input_char[i] = '\0'; // Set each character to null
+    }
+    terminal_writestring("\n> ");  
+}
+
+void append_char(char* str, char c, size_t* len, size_t max_len) {
+    if (*len + 1 < max_len) {
+        str[*len] = c;      // Add the new character at the end
+        (*len)++;           // Update the length of the string
+        str[*len] = '\0';   // Add the null-terminator
+    }
+}
+
 void remove_last_char(char* str, size_t* len) {
     if (*len > 0) {
         (*len)--;  // Decrease the length
         str[*len] = '\0';  // Null-terminate after removal
     }
 }
+
 void handle_keypress(char c) {
 	if (c == '\n') {  // Check if the Enter key was pressed
         // Process the input stored in input_buffer (e.g., print it)

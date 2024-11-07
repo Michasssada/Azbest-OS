@@ -1,4 +1,8 @@
 #include <stddef.h>
+#include "../include/terminal.h"
+#include "../include/stdlib/stdlib.h"
+#include "../include/commands.h"
+#include "../include/defines.h"
 #include "../include/stdlib/stdlib.h"
 void keyboard_handler(void);
 void append_char(char* str, char c, size_t* len, size_t max_len);
