@@ -17,6 +17,6 @@ void panic(void) {
     while (true){ asm volatile ("hlt"); }  
 }
 
-void reboot(void) {
+/*void reboot(void) {
     outb(0x64, 0xFE);
 }

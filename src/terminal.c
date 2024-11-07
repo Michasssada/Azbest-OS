@@ -1,7 +1,15 @@
 
 #include "../include/terminal.h"
 void terminal_putchar(char c);
+
+static const size_t VGA_WIDTH = 80;
+static const size_t VGA_HEIGHT = 25;
+size_t terminal_row;
+size_t terminal_column;
+uint8_t terminal_color;
+uint16_t* terminal_buffer;
 bool isEnterPressed = false;
+
 enum vga_color {
 	VGA_COLOR_BLACK = 0,
 	VGA_COLOR_BLUE = 1,
@@ -38,15 +46,6 @@ size_t strlen(const char* str)
 		len++;
 	return len;
 }
-
-static const size_t VGA_WIDTH = 80;
-static const size_t VGA_HEIGHT = 25;
-
-size_t terminal_row;
-size_t terminal_column;
-uint8_t terminal_color;
-uint16_t* terminal_buffer;
-
 void terminal_initialize(void) 
 {
 	terminal_row = 0;
