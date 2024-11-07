@@ -29,8 +29,7 @@ exit_code = os.system("i686-elf-as -o asm/boot.o asm/boot.s")
 if exit_code != 0:
     print(f"compiling asembly failed with code {exit_code}")
     quit()
-#build standard lib
-
+print("assembly compilation succeded")
 #build src
 for i in range(len(file_names)):
     print(file_names[i])
@@ -41,9 +40,7 @@ for i in range(len(file_names)):
     except RuntimeError as e:
         print(f"compilation process failded with \n{e}")
         quit()
-    finally:
-        print("compilation succeded")
-
+print("compilation succeded")
 try:
     link_array = [f"{item}.o" for item in file_names]
     link = ' '.join([f"build/{item}" for item in link_array])
@@ -64,8 +61,6 @@ try:
 except RuntimeError as e:
     print(f"failded \n {e}")
     quit()
-finally:
-    print("ISO generated successfully")
-
+print("system linked")
 if args.boot:
     os.system("qemu-system-x86_64 --cdrom build/Azbest_OS.iso")
