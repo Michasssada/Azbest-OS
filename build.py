@@ -26,6 +26,10 @@ for i in range(len(files_to_build)):
     if exit_code != 0:
         quit()
 print("system built")
-built_files = os.getcwd()+"/src"
-file_names = [f for f in os.listdir(directory_path) if os.path.isfile(os.path.join(directory_path, f))]
-exit_code = os.system(f"i686-elf-gcc -T linker.ld -o build/Azbest_OS.bin -ffreestanding -O2 -nostdlib asm/boot.o {}  -lgcc -L/include")
+built_files = os.getcwd()+"/build"
+files_to_link = [os.path.join(built_files, f) for f in os.listdir(built_files) if os.path.isfile(os.path.join(built_files, f))]
+link = ' '.join([item for item in files_to_link])
+exit_code = os.system(f"i686-elf-gcc -T linker.ld -o build/Azbest_OS.bin -ffreestanding -O2 -nostdlib asm/boot.o {link}  -lgcc -L/include")
+if(exit_code != 0):
+    quit()
+print("system linked")
