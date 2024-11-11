@@ -67,16 +67,7 @@ void check_command(){
     else if(compareSomeChars(input,"set color",9)){
         setColor();
     }
-    else if(compareSomeChars(input,"test",4)){
-        if(input[6] == 'y'){
-            Sysdata.experimental = 1;
-            printf("loading experimental");
-            kernel_main();
-        }
-        else{
-            printf("turning on experimental feature needs to reload many kernel modules.\ninput: experimental y to start experimental\n");
-        }
-        
+    else if(strcmp(input,"test")){
         
     }
     else
