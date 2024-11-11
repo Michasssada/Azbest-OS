@@ -23,3 +23,5 @@ After installation, launch the ISO in QEMU or another virtualization tool.
 ## Support
 
 Azbest OS is an evolving project. Any help and suggestions are welcome!
+## See our Discord
+https://discord.gg/vyvBxdr4
