@@ -1,4 +1,4 @@
-# new build system
+# new better build system
 import os
 import argparse
 
