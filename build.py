@@ -36,7 +36,7 @@ for i in range(len(file_names)):
     try:
         exit_code = os.system(f"i686-elf-gcc -c {os.getcwd() + "/src/" + file_names[i]+".c"}  -o {"build/"+file_names[i]+".o"} -std=gnu99 -ffreestanding -O2 -Wall -Wextra -L/include")
         if exit_code != 0:
-            raise RuntimeError(f"Command failed with exit code {exit_code}")
+            quit()
     except RuntimeError as e:
         print(f"compilation process failded with \n{e}")
         quit()

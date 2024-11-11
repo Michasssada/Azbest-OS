@@ -1,5 +1,6 @@
+#include <stdbool.h> 
 struct sysdata
 {
-    bool experimental;
+    int experimental;
 };
- sysdata Sysdata;
+extern struct sysdata Sysdata;

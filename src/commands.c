@@ -3,6 +3,8 @@
 #include "../include/defines.h"
 #include "../include/stdlib/stdlib.h"
 #include "../include/commands.h"
+#include "../include/sysdata.h"
+#include "../include/kernel.h"
 #include <stddef.h>
 enum vga_color {
 	VGA_COLOR_BLACK = 0,
@@ -65,7 +67,17 @@ void check_command(){
     else if(compareSomeChars(input,"set color",9)){
         setColor();
     }
-    else if(strcmp(input,"test")==0){
+    else if(compareSomeChars(input,"test",4)){
+        if(input[6] == 'y'){
+            Sysdata.experimental = 1;
+            printf("loading experimental");
+            kernel_main();
+        }
+        else{
+            printf("turning on experimental feature needs to reload many kernel modules.\ninput: experimental y to start experimental\n");
+        }
+        
+        
     }
     else
     {

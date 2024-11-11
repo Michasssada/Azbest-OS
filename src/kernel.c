@@ -4,6 +4,7 @@
 #include "../include/stdlib/stdlib.h"
 #include "../include/defines.h"
 #include "../include/IDT.h"
+#include "../include/sysdata.h"
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
@@ -22,6 +23,9 @@ void init(){
     init_heap();
     terminal_initialize();
     terminal_setcolor(11);
+    if(Sysdata.experimental){
+        printf("experimental on");
+    }
     terminal_writestring("Welcome to Azbest OS! ver:"OS_VERSION". No rights reserved hehe\n");
     terminal_setcolor(10);
     terminal_writestring("> ");
