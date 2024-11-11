@@ -1,5 +1,5 @@
-#include "../include/terminal.h"
-#include "../include/keyboard.h"
+#include "io/terminal.h"
+#include "io/keyboard.h"
 #include "../include/kernel.h"
 #include "../include/stdlib/stdlib.h"
 #include "../include/defines.h"

@@ -1,5 +1,5 @@
 
-#include "../include/terminal.h"
+#include "io/terminal.h"
 void terminal_putchar(char c);
 static const size_t VGA_WIDTH = 80;
 static const size_t VGA_HEIGHT = 25;

@@ -1,6 +1,6 @@
 #include <stddef.h>
-#include "../include/terminal.h"
-#include "../include/stdlib/stdlib.h"
+#include "terminal.h"
+#include "stdlib/stdlib.h"
 #include "../include/commands.h"
 #include "../include/defines.h"
 #include "../include/stdlib/stdlib.h"

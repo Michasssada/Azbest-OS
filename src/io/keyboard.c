@@ -1,7 +1,7 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
-#include "../include/keyboard.h"
+#include "io/keyboard.h"
 
 
 static const size_t VGA_WIDTH = 80;

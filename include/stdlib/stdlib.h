@@ -1,7 +1,7 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
-#include "../../include/terminal.h"
+#include "io/terminal.h"
 #include "string.h"
 #include "malloc.h"
 #include "free.h"
