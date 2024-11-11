@@ -1,4 +1,9 @@
 import os
+import argparse
+
+parser = argparse.ArgumentParser(description="Example of adding custom flags.")
+parser.add_argument('-b', '--boot', action='store_true', help="boots the os.")
+args = parser.parse_args()
 
 def get_all_files(directory):
     files_with_extension = []
@@ -33,3 +38,17 @@ exit_code = os.system(f"i686-elf-gcc -T linker.ld -o build/Azbest_OS.bin -ffrees
 if(exit_code != 0):
     quit()
 print("system linked")
+exit_code = os.system("mv build/Azbest_OS.bin iso/boot")
+if(exit_code != 0):
+    quit()
+exit_code = os.system(f"rm {link}")
+if(exit_code != 0):
+    quit()
+print("running grub-mkrescue")
+exit_code = os.system("grub-mkrescue -o Azbest_OS.iso iso")
+if(exit_code != 0):
+    quit()
+
+
+if args.boot:
+    os.system("qemu-system-x86_64 --cdrom Azbest_OS.iso")
