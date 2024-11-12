@@ -3,6 +3,7 @@ import os
 import argparse
 import platform
 
+
 parser = argparse.ArgumentParser(description="Example of adding custom flags.")
 parser.add_argument('-b', '--boot', action='store_true', help="boots the os.")
 parser.add_argument('-g', '--nogrub', action='store_true', help="compiles only, doesn't run grub-mkrescue.")
@@ -68,7 +69,10 @@ else:
     if args.boot:
         os.system("qemu-system-x86_64 --cdrom Azbest_OS.iso")
 
+if platform.system() == "Windows":
+    exit_code = os.system(f"del {link}")
+else:
+    exit_code = os.system(f"rm {link}")
 
-exit_code = os.system(f"rm {link}")
 if(exit_code != 0):
     quit()
