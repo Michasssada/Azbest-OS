@@ -1,10 +1,10 @@
 #include "io/terminal.h"
 #include "io/keyboard.h"
-#include "../include/kernel.h"
-#include "../include/stdlib/stdlib.h"
-#include "../include/defines.h"
-#include "../include/IDT.h"
-#include "../include/sysdata.h"
+#include "kernel.h"
+#include "stdlib/stdlib.h"
+#include "defines.h"
+#include "IDT.h"
+#include "sysdata.h"
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
