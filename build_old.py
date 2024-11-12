@@ -1,5 +1,6 @@
 # to use the custom file. the custom file still must be in src directory but can be in a folder in src
 print("that won't work. program is here only for history")
+quit()
 import os
 import argparse
 
