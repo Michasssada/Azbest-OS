@@ -1,6 +1,7 @@
 # new better build system
 import os
 import argparse
+import platform
 
 parser = argparse.ArgumentParser(description="Example of adding custom flags.")
 parser.add_argument('-b', '--boot', action='store_true', help="boots the os.")
@@ -45,10 +46,16 @@ if(exit_code != 0):
 print("system linked")
 
 if args.nogrub:
-    exit_code = os.system(f"mv build/Azbest_OS.bin {os.getcwd()}")
+    if platform.system() == "Windows":
+        exit_code = os.system(f"move build/Azbest_OS.bin {os.getcwd()}")
+    else:
+        exit_code = os.system(f"mv build/Azbest_OS.bin {os.getcwd()}")
     if args.boot:
         os.system("qemu-system-x86_64 --kernel Azbest_OS.bin")
 else:
+    if platform.system() == "Windows":
+        print("you can't use grub-mkrescue on windows add -g flag.")
+        quit()
     exit_code = os.system("mv build/Azbest_OS.bin iso/boot")
     if(exit_code != 0):
         quit()
