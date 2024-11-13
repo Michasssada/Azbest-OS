@@ -45,7 +45,7 @@ bool compareSomeChars(const char *str1, const char *str2, int HowMany) {
 // Function to set text color
 void setColor() {
     if (input[11] != '\n') {
-        int color = Int(input[11]);
+        int color = Int(input[10]);
         if (color == 0) {
             user_input_color = VGA_COLOR_LIGHT_GREEN;
             terminal_setcolor(VGA_COLOR_LIGHT_GREEN);
@@ -87,11 +87,12 @@ void check_command() {
         help();
     } else if (strcmp(input, "clear") == 0) {
         terminal_clear();
-    } else if (compareSomeChars(input, "set color", 9)) {
+    } else if (strcmp(command, "setcolor")==0) {
         setColor();
-    } else if (strcmp(input, "syscall") == 0) {
+    } else if (strcmp(command, "syscall") == 0) {
         syscall_command();  // Call syscall function
     }else if (strcmp(command, "test") == 0){
+        printf(command);
 
     } else {
         terminal_setcolor(error_output_color);
@@ -111,6 +112,6 @@ void azbestFetch() {
 void help() {
     printf("clear - clears the screen\n");
     printf("azbestfetch - prints data about OS. basically azbest os version of neofetch :).\n");
-    printf("set color - sets color of user input.\n light green = 0, green = 1\n");
+    printf("setColor - sets color of user input.\n light green = 0, green = 1\n");
     printf("syscall - base syscall command\n");
 }
