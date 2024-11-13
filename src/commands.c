@@ -42,6 +42,19 @@ bool compareSomeChars(const char *str1, const char *str2, int HowMany) {
     return true;
 }
 
+char* get_command(char *str, char delimiter) {
+    char *start = str;
+    
+    while (*str) {
+        if (*str == delimiter) {
+            *str = '\0';  // Replace delimiter with null terminator
+            break;
+        }
+        str++;
+    }
+    return start;  // Return the first token
+}
+
 // Function to set text color
 void setColor() {
     if (input[11] != '\n') {
@@ -57,19 +70,6 @@ void setColor() {
         printf("color not specified");
     }
 }
-char* get_command(char *str, char delimiter) {
-    char *start = str;
-    
-    while (*str) {
-        if (*str == delimiter) {
-            *str = '\0';  // Replace delimiter with null terminator
-            break;
-        }
-        str++;
-    }
-    return start;  // Return the first token
-}
-
 // New syscall function, currently without action implementation
 void syscall_command() {
     printf("syscall command called\n");
@@ -81,6 +81,8 @@ void syscall_command() {
 void check_command() {
     getInput(input);
     char *command = get_command(input, ' ');
+    String arguments;
+    void getCharsAfterSpace(input, arguments);
     if (strcmp(input, "azbestfetch") == 0) {
         azbestFetch();
     } else if (strcmp(input, "help") == 0) {
@@ -92,7 +94,6 @@ void check_command() {
     } else if (strcmp(command, "syscall") == 0) {
         syscall_command();  // Call syscall function
     }else if (strcmp(command, "test") == 0){
-        printf(command);
 
     } else {
         terminal_setcolor(error_output_color);
