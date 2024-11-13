@@ -91,6 +91,8 @@ void check_command() {
         setColor();
     } else if (strcmp(input, "syscall") == 0) {
         syscall_command();  // Call syscall function
+    }else if (strcmp(command, "test") == 0){
+
     } else {
         terminal_setcolor(error_output_color);
         terminal_writestring("no such command. enter help for more info\n");
