@@ -18,7 +18,8 @@ static inline uint8_t inb(uint16_t port) {
 }
 
 void init(){
-
+    gdt_install();
+    idt_install();
     init_heap();
     terminal_initialize();
     terminal_setcolor(11);

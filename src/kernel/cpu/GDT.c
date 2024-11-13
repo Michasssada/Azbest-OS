@@ -1,4 +1,5 @@
 #include "kernel/cpu/GDT.h"
+#include "kernel/kernel.h"
 // Null descriptor (0x0)
 #define GDT_NULL 0
 
@@ -35,4 +36,5 @@ void gdt_install() {
 
     // Load the GDT using assembly
     asm volatile("lgdt (%0)" : : "r" (&gdtp));
+    
 }

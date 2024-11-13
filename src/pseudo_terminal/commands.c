@@ -1,9 +1,9 @@
 #include "io/keyboard.h"
 #include "io/terminal.h"
-#include "../include/defines.h"
-#include "../include/stdlib/stdlib.h"
-#include "../include/commands.h"
-#include "../include/sysdata.h"
+#include "defines.h"
+#include "stdlib/stdlib.h"
+#include "pseudo_terminal/commands.h"
+#include "sysdata.h"
 #include "kernel/kernel.h"
 #include <stddef.h>
 #include <stdbool.h>
