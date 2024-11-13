@@ -57,6 +57,18 @@ void setColor() {
         printf("color not specified");
     }
 }
+char* get_command(char *str, char delimiter) {
+    char *start = str;
+    
+    while (*str) {
+        if (*str == delimiter) {
+            *str = '\0';  // Replace delimiter with null terminator
+            break;
+        }
+        str++;
+    }
+    return start;  // Return the first token
+}
 
 // New syscall function, currently without action implementation
 void syscall_command() {
@@ -67,7 +79,7 @@ void syscall_command() {
 // Function to check user commands
 void check_command() {
     getInput(input);
-
+    char *command = get_command(input, ' ');
     if (strcmp(input, "azbestfetch") == 0) {
         azbestFetch();
     } else if (strcmp(input, "help") == 0) {
