@@ -1,9 +1,8 @@
 #include "io/terminal.h"
 #include "io/keyboard.h"
-#include "kernel.h"
+#include "kernel/kernel.h"
 #include "stdlib/stdlib.h"
 #include "defines.h"
-#include "IDT.h"
 #include "sysdata.h"
 #include <stdbool.h>
 #include <stddef.h>
@@ -19,7 +18,7 @@ static inline uint8_t inb(uint16_t port) {
 }
 
 void init(){
-    init_idt();
+
     init_heap();
     terminal_initialize();
     terminal_setcolor(11);

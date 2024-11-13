@@ -4,7 +4,7 @@
 #include "../include/stdlib/stdlib.h"
 #include "../include/commands.h"
 #include "../include/sysdata.h"
-#include "../include/kernel.h"
+#include "kernel/kernel.h"
 #include <stddef.h>
 #include <stdbool.h>
 

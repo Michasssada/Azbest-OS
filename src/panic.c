@@ -1,5 +1,5 @@
 //#include "ioterminal.h"
-#include "kernel.h"
+#include "kernel/kernel.h"
 
 // Panic handler
 void panic(char* info) {
