@@ -81,8 +81,6 @@ void syscall_command() {
 void check_command() {
     getInput(input);
     char *command = get_command(input, ' ');
-    String arguments;
-    void getCharsAfterSpace(input, arguments);
     if (strcmp(input, "azbestfetch") == 0) {
         azbestFetch();
     } else if (strcmp(input, "help") == 0) {
