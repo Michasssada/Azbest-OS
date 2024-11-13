@@ -74,6 +74,7 @@ char* get_command(char *str, char delimiter) {
 void syscall_command() {
     printf("syscall command called\n");
     // Additional handling for syscall arguments can be added here
+
 }
 
 // Function to check user commands
