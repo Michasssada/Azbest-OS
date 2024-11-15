@@ -20,7 +20,7 @@ After installation, launch the ISO in QEMU or another virtualization tool.
 
 - Installed `i686-elf`
 - Python 3.x
-- NASM
+- `nasm`
 
 ## Support
 
