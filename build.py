@@ -45,7 +45,26 @@ def get_all_files(directory):
     
     return files_with_extension, files_without_extension
 
+exit_code = os.system(f"i686-elf-gcc --version")
+if exit_code != 0:
+    print("install i686-elf")
+    quit()
 
+exit_code = os.system(f"nasm --version")
+if exit_code != 0:
+    print("install nasm")
+    quit()
+
+exit_code = os.system(f"grub-mkrescue --version")
+if exit_code != 0:
+    print("install nasm")
+    quit()
+
+if args.boot:
+    os.system("qemu-system-x86_64 --version")
+    if exit_code != 0:
+        print("install qemu")
+        quit()
 directory_path = os.getcwd()+"/src"
 files_to_build, files_to_build_no_extensions = get_all_files(directory_path)
 
@@ -54,7 +73,6 @@ asm_to_build,asm_to_build_no_extensions =  get_all_files(asm_path)
 for i in range(len(asm_to_build)):
     exit_code = os.system(f"i686-elf-as -o build/{asm_to_build_no_extensions[i] + ".o"} asm/{asm_to_build[i]}")
     if exit_code != 0:
-        print
         exit_code = os.system(f"nasm -f elf32 asm/{asm_to_build[i]} -o build/{asm_to_build_no_extensions[i] + ".o"}")
         if exit_code != 0:
             quit()    
