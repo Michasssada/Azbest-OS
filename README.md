@@ -17,8 +17,8 @@ Make sure `Python 3.x`, `i686-elf` and `nasm` are installed.
 After installation, launch the ISO in QEMU or another virtualization tool.
 
 ## Requirements
-
-- Installed `i686-elf`
+### Installed:
+- `i686-elf`
 - `Python 3.x`
 - `nasm`
 
