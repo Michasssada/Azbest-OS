@@ -8,7 +8,7 @@ gdt_flush:
     MOV es, ax
     MOV fs, ax
     MOV gs, ax
-    MOV ss, ax ; ss hehe
+    MOV ss, ax ; ss hehe ࿖
     JMP 0x08:.flush
 .flush:
     RET
