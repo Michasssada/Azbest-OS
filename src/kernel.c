@@ -1,6 +1,7 @@
 #include "io/terminal.h"
 #include "io/keyboard.h"
 #include "kernel/kernel.h"
+#include "kernel/cpu/IDT.h"
 #include "stdlib/stdlib.h"
 #include "defines.h"
 #include "sysdata.h"
@@ -16,10 +17,11 @@ static inline uint8_t inb(uint16_t port) {
     __asm__ volatile ("inb %1, %0" : "=a"(result) : "Nd"(port));
     return result;
 }
-
+void default_exception_handler(){
+    // Simple infinite loop to halt on exception
+        while(1);
+}
 void init(){
-    gdt_install();
-    idt_install();
     init_heap();
     terminal_initialize();
     terminal_setcolor(11);

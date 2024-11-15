@@ -8,6 +8,7 @@ parser = argparse.ArgumentParser(description="Example of adding custom flags.")
 parser.add_argument('-b', '--boot', action='store_true', help="boots the os.")
 parser.add_argument('-g', '--nogrub', action='store_true', help="compiles only, doesn't run grub-mkrescue.")
 
+
 def clear_folder(folder_path):
     # Check if the folder exists
     if os.path.exists(folder_path):
@@ -48,7 +49,16 @@ def get_all_files(directory):
 directory_path = os.getcwd()+"/src"
 files_to_build, files_to_build_no_extensions = get_all_files(directory_path)
 
-exit_code = os.system("i686-elf-as -o build/boot.o asm/boot.s")
+asm_path = os.getcwd()+"/asm"
+asm_to_build,asm_to_build_no_extensions =  get_all_files(asm_path)
+for i in range(len(asm_to_build)):
+    exit_code = os.system(f"i686-elf-as -o build/{asm_to_build_no_extensions[i] + ".o"} asm/{asm_to_build[i]}")
+    if exit_code != 0:
+        print
+        exit_code = os.system(f"nasm -f elf32 asm/{asm_to_build[i]} -o build/{asm_to_build_no_extensions[i] + ".o"}")
+        if exit_code != 0:
+            quit()    
+
 
 for i in range(len(files_to_build)):
     exit_code = os.system(f"i686-elf-gcc -c {os.getcwd() + "/src/" + files_to_build[i]}  -o {"build/"+files_to_build_no_extensions[i]+".o"} -std=gnu99 -ffreestanding -O2 -Wall -Wextra -Iinclude")
