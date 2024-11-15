@@ -22,6 +22,7 @@ void default_exception_handler(){
         while(1);
 }
 void init(){
+    initGdt();
     init_heap();
     terminal_initialize();
     terminal_setcolor(11);
