@@ -10,13 +10,15 @@
 #include <stdint.h>
 #include "stdlib/string.h"
 void init(){
+    if(Sysdata.experimental){
+        
+    }
+    printf("experimental on");
     initGdt();
+
     init_heap();
     terminal_initialize();
     terminal_setcolor(11);
-    if(Sysdata.experimental){
-        printf("experimental on");
-    }
     terminal_writestring("Welcome to Azbest OS! ver:"OS_VERSION". No rights reserved hehe\n");
     terminal_setcolor(10);
     terminal_writestring("> ");
