@@ -114,8 +114,7 @@ void keyboard_handler(void) {
         if (key) {
             if (press && key){
                 handle_keypress(key);  // Handle the keypress by storing the char and displaying it
-            }
-                
+            }   
         }
     }
 }
