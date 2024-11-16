@@ -8,6 +8,8 @@ void panic(char* info) {
     terminal_writestring("Kernel Panic\n"); // Display the "Kernel Panic" message
     
     terminal_setcolor(7);                // Set text color to white
+    terminal_writestring("A critical error occurred and system stopped working to prevent damage to your computer.\n");
+    terminal_writestring("If this error occurs really often - please consider system reinstalation or asking on a Discord server.\n\n"); // Display information
     terminal_writestring("Triggered by: "); // Display "Triggered by"
     terminal_writestring(info);          // Display the error info, e.g. "division by zero"
     terminal_writestring("\n"); 
