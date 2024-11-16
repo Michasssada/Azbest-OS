@@ -10,11 +10,11 @@ void init(){
     terminal_writestring("Gdt initialized\n");
     initIdt();
     terminal_writestring("interrupts initialized\n");
-    initKeyboard();
     terminal_setcolor(11);
     terminal_writestring("Welcome to Azbest OS! ver:"OS_VERSION". No rights reserved hehe\n");
     terminal_setcolor(10);
     terminal_writestring("> ");
+    initKeyboard();
 
     /*
 
@@ -29,6 +29,5 @@ void kernel_main(void)
 
     init();
 	while(1){
-		//keyboard_handler();
 	}
 }
