@@ -1,25 +1,38 @@
-#include "kernel/cpu/IDT.h"
+#include "stdint.h"
+#include "misc/util.h"
+#include "io/terminal.h"
+#include "kernel/cpu/idt.h"
+#include "kernel/kernel.h"
+
 struct idt_entry_struct idt_entries[256];
-struct idt_prt_struct idt_prt;
+struct idt_ptr_struct idt_ptr;
 
 extern void idt_flush(uint32_t);
 
 void initIdt(){
-    idt_prt.limit = sizeof(struct idt_entry_struct) * 256 - 1;
-    idt_prt.base = (uint32_t) &idt_entries;
-    memset(&idt_entries,0, sizeof(struct idt_entry_struct) * 256);
-    outPortB(0x20,0x11);
-    outPortB(0xA0,0x11);
-    outPortB(0x21,0x20);
-    outPortB(0xA1,0x28);
+    idt_ptr.limit = sizeof(struct idt_entry_struct) * 256 - 1;
+    idt_ptr.base = (uint32_t) &idt_entries;
+
+    memset(&idt_entries, 0, sizeof(struct idt_entry_struct) * 256);
+
+    //0x20 commands and 0x21 data
+    //0xA0 commands and 0xA1 data
+    outPortB(0x20, 0x11);
+    outPortB(0xA0, 0x11);
+
+    outPortB(0x21, 0x20);
+    outPortB(0xA1, 0x28);
+
     outPortB(0x21,0x04);
     outPortB(0xA1,0x02);
-    outPortB(0x21,0x01);
-    outPortB(0xA1,0x01);
-    outPortB(0x21,0x0);
-    outPortB(0xA1,0x0);
 
-    setIdtGate(0, (uint32_t)isr0, 0x08, 0x0E);
+    outPortB(0x21, 0x01);
+    outPortB(0xA1, 0x01);
+
+    outPortB(0x21, 0x0);
+    outPortB(0xA1, 0x0);
+
+    setIdtGate(0, (uint32_t)isr0,0x08, 0x8E);
     setIdtGate(1, (uint32_t)isr1,0x08, 0x8E);
     setIdtGate(2, (uint32_t)isr2,0x08, 0x8E);
     setIdtGate(3, (uint32_t)isr3,0x08, 0x8E);
@@ -69,12 +82,14 @@ void initIdt(){
     setIdtGate(46, (uint32_t)irq14, 0x08, 0x8E);
     setIdtGate(47, (uint32_t)irq15, 0x08, 0x8E);
 
+
     setIdtGate(128, (uint32_t)isr128, 0x08, 0x8E); //System calls
     setIdtGate(177, (uint32_t)isr177, 0x08, 0x8E); //System calls
-    idt_flush((uint32_t)&idt_prt);
 
+    idt_flush((uint32_t)&idt_ptr);
 
 }
+
 void setIdtGate(uint8_t num, uint32_t base, uint16_t sel, uint8_t flags){
 
     idt_entries[num].base_low = base & 0xFFFF;
@@ -82,7 +97,9 @@ void setIdtGate(uint8_t num, uint32_t base, uint16_t sel, uint8_t flags){
     idt_entries[num].sel = sel;
     idt_entries[num].always0 = 0;
     idt_entries[num].flags = flags | 0x60;
+
 }
+
 unsigned char* exception_messages[] = {
     "Division By Zero",
     "Debug",
@@ -119,14 +136,10 @@ unsigned char* exception_messages[] = {
 };
 
 void isr_handler(struct InterruptRegisters* regs){
-        if (regs->int_no < 32){
-        terminal_writestring(exception_messages[regs->int_no]);
-        terminal_writestring("\n");
-        terminal_writestring("Exception! System Halted\n");
-        for (;;);
+    if (regs->int_no < 32){
+        panic(exception_messages[regs->int_no]);
     }
 }
-
 
 void *irq_routines[16] = {
     0,0,0,0,0,0,0,0,

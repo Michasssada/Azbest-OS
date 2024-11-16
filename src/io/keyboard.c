@@ -106,22 +106,21 @@ void getInput(char *output){
 }
 
 void keyboard_handler(void) {
-    uint8_t scancode = inb(0x60);
-    
+    char scancode = inb(0x60) & 0x7F; //What key is pressed
+    char press = inb(0x60) & 0x80; //Press down, or released
+
     if (scancode < sizeof(scancode_to_char)) {
         char key = scancode_to_char[scancode];
         if (key) {
-            handle_keypress(key);  // Handle the keypress by storing the char and displaying it
+            if (press && key){
+                handle_keypress(key);  // Handle the keypress by storing the char and displaying it
+            }
+                
         }
     }
-	delay(KEYBOARD_DELAY_CLICK);
 }
 
 
-/* Interrupt Service Routine for keyboard */
-void keyboard_isr(void) {
-    keyboard_handler();
-    
-    // Send End of Interrupt (EOI) signal to PIC
-    outb(0x20, 0x20);
+void initKeyboard(){
+    irq_install_handler(1,&keyboard_handler);
 }

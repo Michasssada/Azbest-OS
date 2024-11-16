@@ -1,8 +1,19 @@
-#include "stddef.h"
-#include "stdint.h"
-#include "misc/util.h"
-#include "io/terminal.h"
 
+struct idt_entry_struct{
+    uint16_t base_low;
+    uint16_t sel;
+    uint8_t always0;
+    uint8_t flags;
+    uint16_t base_high;
+}__attribute__((packed));
+
+struct idt_ptr_struct{
+    uint16_t limit;
+    uint32_t base;
+}__attribute__((packed));
+
+void initIdt();
+void setIdtGate(uint8_t num, uint32_t base, uint16_t sel, uint8_t flags);
 
 void isr_handler(struct InterruptRegisters* regs);
 
@@ -39,6 +50,9 @@ extern void isr29();
 extern void isr30();
 extern void isr31();
 
+extern void isr128();
+extern void isr177();
+
 extern void irq0();
 extern void irq1();
 extern void irq2();
@@ -55,25 +69,3 @@ extern void irq12();
 extern void irq13();
 extern void irq14();
 extern void irq15();
-
-extern void isr128();
-extern void isr177();
-
-
-struct idt_entry_struct
-{
-    uint16_t base_low;
-    uint16_t sel;
-    uint8_t always0;
-    uint8_t flags;
-    uint16_t base_high;
-}__attribute__((packed));
-
-struct idt_prt_struct
-{
-    uint16_t limit;
-    uint16_t base;
-}__attribute__((packed));
-
-void initIdt();
-void setIdtGate(uint8_t num, uint32_t base, uint16_t sel, uint8_t flags);

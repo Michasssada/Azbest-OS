@@ -31,7 +31,6 @@ idt_flush:
         JMP irq_common_stub
 %endmacro
 
-
 ISR_NOERRCODE 0
 ISR_NOERRCODE 1
 ISR_NOERRCODE 2
@@ -84,7 +83,6 @@ IRQ  12,    44
 IRQ  13,    45
 IRQ  14,    46
 IRQ  15,    47
-
 
 extern isr_handler
 isr_common_stub:
