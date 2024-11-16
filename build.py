@@ -44,6 +44,16 @@ def get_all_files(directory):
             files_without_extension.append(file_without_extension)
     
     return files_with_extension, files_without_extension
+build_directory_path = os.getcwd()+"/build"
+
+if not os.path.exists(build_directory_path):
+    # Create the directory
+    os.makedirs(build_directory_path)
+    print(f"Directory created: {build_directory_path}")
+else:
+    print(f"Directory already exists: {build_directory_path}")
+
+
 
 exit_code = os.system(f"i686-elf-gcc --version")
 if exit_code != 0:
