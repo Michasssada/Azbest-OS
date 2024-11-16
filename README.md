@@ -2,6 +2,9 @@
 
 Azbest OS is a simple, console-based operating system.
 
+> [!TIP]
+> You can join our Discord server for support and chatting with OS creators: https://discord.gg/vyvBxdr4
+
 ## Features
 
 - Console interface
@@ -25,5 +28,3 @@ After installation, launch the ISO in QEMU or another virtualization tool.
 ## Support
 
 Azbest OS is an evolving project. Any help and suggestions are welcome!
-## See our Discord
-https://discord.gg/vyvBxdr4
