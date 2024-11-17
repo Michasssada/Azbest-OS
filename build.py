@@ -65,10 +65,13 @@ if exit_code != 0:
     print("install nasm")
     quit()
 
-exit_code = os.system(f"grub-mkrescue --version")
-if exit_code != 0:
-    print("install nasm")
-    quit()
+if args.nogrub:
+    print("no grub required")
+else:
+    exit_code = os.system(f"grub-mkrescue --version")
+    if exit_code != 0:
+        print("install grub")
+        quit()
 
 if args.boot:
     os.system("qemu-system-x86_64 --version")
