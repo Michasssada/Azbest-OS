@@ -12,3 +12,10 @@ gdt_flush:
     JMP 0x08:.flush
 .flush:
     RET
+
+
+global tss_flush
+tss_flush:
+    MOV ax, 0x2B
+    LTR ax
+    RET
