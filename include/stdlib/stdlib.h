@@ -3,8 +3,6 @@
 #include <stdint.h>
 #include "io/terminal.h"
 #include "string.h"
-#include "malloc.h"
-#include "free.h"
 int strcmp(const char* str1, const char* str2);
 void intToStr(int value, char* buffer, int base);
 void printf(char *in);

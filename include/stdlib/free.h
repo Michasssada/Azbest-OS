@@ -1,1 +1,0 @@
-void free(void* ptr);
