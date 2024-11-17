@@ -5,6 +5,7 @@
 #include "pseudo_terminal/commands.h"
 #include "sysdata.h"
 #include "kernel/kernel.h"
+#include "kernel/devices/timer.h"
 #include <stddef.h>
 #include <stdbool.h>
 
@@ -76,7 +77,11 @@ void syscall_command() {
     // Additional handling for syscall arguments can be added here
 
 }
-
+void get_ticks_command(){
+    String buffer;
+    intToStr(ticks,buffer,10);
+    terminal_writestring(buffer);
+}
 // Function to check user commands
 void check_command() {
     getInput(input);
@@ -93,7 +98,10 @@ void check_command() {
         syscall_command();  // Call syscall function
     }else if (strcmp(command, "test") == 0){
         
-    } else {
+    }else if (strcmp(command, "gettick") == 0){
+        get_ticks_command();
+    }
+    else {
         terminal_setcolor(error_output_color);
         terminal_writestring("no such command. enter help for more info\n");
         terminal_setcolor(user_input_color);
