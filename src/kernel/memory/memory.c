@@ -1,7 +1,8 @@
 #include "stdint.h"
 #include "misc/multiboot.h"
 #include "stdlib/stdio.h"
-
+#include "io/terminal.h"
+#include "stdlib/stdlib.h"
 void initMemory(struct multiboot_info* bootInfo){
     printf("%d\n", bootInfo->vbe_mode_info);
     for (int i = 0; i < bootInfo->mmap_length; i += sizeof(struct multiboot_mmap_entry)){
