@@ -43,12 +43,6 @@ void intToStr(int value, char* buffer, int base) {
     buffer[i] = '\0'; // Null-terminate the string
 }
 
-void printf(char *in){
-    terminal_setcolor(15);
-    terminal_writestring(in);
-    terminal_setcolor(user_input_color);
-}
-
 void StrCpy(char *destination, const char *source) {
     while (*source) {         // While we haven't reached the end of the source string
         *destination++ = *source++; // Copy each character

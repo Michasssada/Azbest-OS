@@ -114,7 +114,7 @@ if args.nogrub:
     else:
         exit_code = os.system(f"mv build/Azbest_OS.bin {os.getcwd()}")
     if args.boot:
-        os.system("qemu-system-x86_64 --kernel Azbest_OS.bin")
+        os.system("qemu-system-i386 --kernel Azbest_OS.bin")
 else:
     if platform.system() == "Windows":
         print("you can't use grub-mkrescue on windows add -g flag.")
@@ -129,7 +129,7 @@ else:
         print("if you are not on linux or mac use -g flag")
         quit()
     if args.boot:
-        os.system("qemu-system-x86_64 --cdrom Azbest_OS.iso")
+        os.system("qemu-system-i386 --cdrom Azbest_OS.iso")
 
 if platform.system() == "Windows":
     exit_code = os.system(f"del {link}")
