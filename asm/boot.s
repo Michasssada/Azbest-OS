@@ -1,29 +1,21 @@
-.set ALIGN,    1<<0             /* align loaded modules on page boundaries */
-.set MEMINFO,  1<<1             /* provide memory map */
-.set FLAGS,    ALIGN | MEMINFO  /* this is the Multiboot 'flag' field */
-.set MAGIC,    0x1BADB002       /* 'magic number' for Multiboot */
-.set CHECKSUM, -(MAGIC + FLAGS) /* checksum for validation */
+BITS 32
 
-.section .multiboot
-.align 4
-.long MAGIC
-.long FLAGS
-.long CHECKSUM
+section .text
+    ALIGN 4
+    DD 0x1BADB002
+    DD 0x00000000
+    DD -(0x1BADB002 + 0x00000000)
 
-.section .bss
-.align 16
-stack_bottom:
-.skip 16384 # 16 KiB
-stack_top:
+global start
+extern kernel_main
 
-.section .text
-.global _start
-.type _start, @function
-_start:
-	mov $stack_top, %esp
-	push %ebx
-	push %eax
-    
+start:
+	CLI
+	MOV esp, stack_space
+	PUSH ebx
+	PUSH eax
 	call kernel_main
 
-.size _start, . - _start
+section .bss
+RESB 8192
+stack_space:
