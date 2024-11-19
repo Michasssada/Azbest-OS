@@ -3,12 +3,12 @@
 #include "io/terminal.h"
 
 void putc(char c){
-    terminal_putchar(&c);
+    terminal_putchar(c);
 }
 
 void puts(const char* s){
     while (*s){
-        terminal_putchar(*s);
+        terminal_putchar(s);
         s++;
     }
 }
