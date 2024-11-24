@@ -15,13 +15,13 @@ Azbest OS is a simple, console-based operating system.
 To run Azbest OS, clone the repository and follow the boot instructions.
 
 Navigate to the folder with the system files and run the command `python build.py`. 
-Make sure `Python 3.x`, `i686-elf` and `nasm` are installed.
+Make sure `Python 3.x`, `i686-elf` or `clang` and `nasm` are installed.
 
 After installation, launch the ISO in QEMU or another virtualization tool.
 
 ## Requirements
 ### Installed:
-- `i686-elf`
+- `i686-elf or clang(then build_clang.py)`
 - `Python 3.x`
 - `nasm`
 
