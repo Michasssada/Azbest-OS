@@ -2,6 +2,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include "io/keyboard.h"
+#include "kernel/cpu/idt.h"
 
 
 static const size_t VGA_WIDTH = 80;

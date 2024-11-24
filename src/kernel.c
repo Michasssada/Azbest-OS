@@ -1,4 +1,5 @@
 #include "io/terminal.h"
+#include "io/keyboard.h"
 #include "kernel/kernel.h"
 #include "kernel/cpu/GDT.h"
 #include "kernel/cpu/idt.h"
@@ -8,6 +9,7 @@
 #include "kernel/memory/memory.h"
 #include "misc/multiboot.h"
 void kernel_main(uint32_t magic, struct multiboot_info* bootInfo);
+
 
 void kernel_main(uint32_t magic, struct multiboot_info* bootInfo) 
 {

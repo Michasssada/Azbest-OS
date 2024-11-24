@@ -1,4 +1,4 @@
-//#include "ioterminal.h"
+#include "io/terminal.h"
 #include "kernel/kernel.h"
 
 // Panic handler
