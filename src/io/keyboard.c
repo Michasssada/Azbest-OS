@@ -106,7 +106,8 @@ void getInput(char *output){
 
 }
 
-void keyboard_handler(void) {
+void keyboard_handler(struct InterruptRegisters *regs) {
+    (void)regs;
     char scancode = inb(0x60) & 0x7F; //What key is pressed
     char press = inb(0x60) & 0x80; //Press down, or released
 
