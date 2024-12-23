@@ -10,11 +10,11 @@ global start
 extern kernel_main
 
 start:
-	CLI
-	MOV esp, stack_space
-	PUSH ebx
-	PUSH eax
-	call kernel_main
+    CLI
+    MOV esp, stack_space
+    CALL kernel_main
+    HLT
+
 
 section .bss
 RESB 8192

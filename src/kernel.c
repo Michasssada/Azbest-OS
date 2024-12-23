@@ -6,12 +6,9 @@
 #include "defines.h"
 #include "stdlib/stdlib.h"
 #include "kernel/devices/timer.h"
-#include "kernel/memory/memory.h"
-#include "misc/multiboot.h"
-void kernel_main(uint32_t magic, struct multiboot_info* bootInfo);
 
 
-void kernel_main(uint32_t magic, struct multiboot_info* bootInfo) 
+void kernel_main() 
 {
     terminal_initialize();
     initGdt();
@@ -19,7 +16,6 @@ void kernel_main(uint32_t magic, struct multiboot_info* bootInfo)
     initIdt();
     terminal_writestring("interrupts initialized\n");
     initTimer();
-    initMemory(bootInfo);
     terminal_setcolor(11);
     terminal_writestring("Welcome to Azbest OS! ver:"OS_VERSION". No rights reserved hehe\n");
     terminal_setcolor(10);

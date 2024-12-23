@@ -86,12 +86,9 @@ asm_path = os.getcwd()+"/asm"
 asm_to_build,asm_to_build_no_extensions =  get_all_files(asm_path)
 print("trying to compile asm with GAS")
 for i in range(len(asm_to_build)):
-    print("compiling with GAS failed trying with NASM")
-    exit_code = os.system(f"i686-elf-as -o build/{asm_to_build_no_extensions[i] + ".o"} asm/{asm_to_build[i]}")
+    exit_code = os.system(f"nasm -f elf32 asm/{asm_to_build[i]} -o build/{asm_to_build_no_extensions[i] + ".o"}")
     if exit_code != 0:
-        exit_code = os.system(f"nasm -f elf32 asm/{asm_to_build[i]} -o build/{asm_to_build_no_extensions[i] + ".o"}")
-        if exit_code != 0:
-            quit()    
+        quit()    
 
 
 for i in range(len(files_to_build)):
