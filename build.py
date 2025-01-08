@@ -100,7 +100,7 @@ print("system built")
 built_files = os.getcwd()+"/build"
 files_to_link = [os.path.join(built_files, f) for f in os.listdir(built_files) if os.path.isfile(os.path.join(built_files, f))]
 link = ' '.join([item for item in files_to_link])
-exit_code = os.system(f"i686-elf-gcc -T linker.ld -o build/Azbest_OS.bin -ffreestanding -O2 -nostdlib {link} -lgcc")
+exit_code = os.system(f"i686-elf-gcc -T link.ld -o build/Azbest_OS.bin -ffreestanding -O2 -nostdlib {link} -lgcc")
 if(exit_code != 0):
     quit()
 print("system linked")
