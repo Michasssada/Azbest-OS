@@ -123,7 +123,7 @@ else:
     print("running grub-mkrescue")
     exit_code = os.system("grub-mkrescue -o Azbest_OS.iso iso")
     if(exit_code != 0):
-        print("if you are not on linux or mac use -g flag")
+        print("if you are not on linux use -g flag")
         quit()
     if args.boot:
         os.system("qemu-system-i386 -m 2048 --cdrom Azbest_OS.iso")
