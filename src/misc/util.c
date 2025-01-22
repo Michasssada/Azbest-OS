@@ -10,5 +10,5 @@ void memset(void *dest, char val, uint32_t count){
 }
 
 void outPortB(uint16_t Port, uint8_t Value){
-    asm volatile ("outb %1, %0" : : "dN" (Port), "a" (Value));
+    __asm__ volatile ("outb %1, %0" : : "dN" (Port), "a" (Value));
 }

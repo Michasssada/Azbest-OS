@@ -27,7 +27,7 @@ void pmm_init(uint32_t memLow, uint32_t memHigh){
 
 uint32_t* memGetCurrentPageDir(){
     uint32_t pd;
-    asm volatile("mov %%cr3, %0": "=r"(pd));
+    __asm__ volatile("mov %%cr3, %0": "=r"(pd));
     pd += KERNEL_START;
 
     return (uint32_t*) pd;
@@ -35,7 +35,7 @@ uint32_t* memGetCurrentPageDir(){
 
 void memChangePageDir(uint32_t* pd){
     pd = (uint32_t*) (((uint32_t)pd)-KERNEL_START);
-    asm volatile("mov %0, %%eax \n mov %%eax, %%cr3 \n" :: "m"(pd));
+    __asm__ volatile("mov %0, %%eax \n mov %%eax, %%cr3 \n" :: "m"(pd));
 }
 
 void syncPageDirs(){
@@ -132,5 +132,5 @@ void initMemory(uint32_t memHigh, uint32_t physicalAllocStart){
 }
 
 void invalidate(uint32_t vaddr){
-    asm volatile("invlpg %0" :: "m"(vaddr));
+    __asm__ volatile("invlpg %0" :: "m"(vaddr));
 }

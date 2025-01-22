@@ -2,7 +2,7 @@
 #include "io/keyboard.h"
 #include "kernel/kernel.h"
 #include "kernel/cpu/GDT.h"
-#include "kernel/cpu/idt.h"
+#include "kernel/cpu/IDT.h"
 #include "defines.h"
 #include "stdlib/stdlib.h"
 #include "stdlib/stdio.h"

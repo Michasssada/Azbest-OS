@@ -18,5 +18,7 @@ void panic(char* info) {
     terminal_writestring("Reboot your PC!"); // Suggest to reboot the system
     
     terminal_setcolor(15);               // Restore default text color (white)
-    asm("hlt");                          // Halt the processor (stop the system)
+    while (1) {
+        __asm__ volatile ("hlt");                          // Halt the processor (stop the system)
+    }
 }
