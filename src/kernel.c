@@ -8,7 +8,6 @@
 #include "stdlib/stdio.h"
 #include "kernel/devices/timer.h"
 #include "kernel/memory/multiboot.h"
-#include "kernel/memory/memory.h"
 
 
 void kmain(uint32_t magic, struct multiboot_info* bootInfo);
@@ -21,14 +20,16 @@ void kmain(uint32_t magic, struct multiboot_info* bootInfo)
     initIdt();
     terminal_writestring("interrupts initialized\n");
     initTimer();
+    uint32_t mod1 = *(uint32_t*)(bootInfo->mods_addr);
+    uint32_t physicalAllocStart = (mod1 + 0xFFF) & ~0xFFF;
+    initMemory(bootInfo->mem_upper * 1024, physicalAllocStart);
+    kmallocInit(0x1000);
+    terminal_writestring("Memory initialized\n");
     terminal_setcolor(11);
     terminal_writestring("Welcome to Azbest OS! ver:"OS_VERSION". No rights reserved hehe\n");
     terminal_setcolor(10);
     terminal_writestring("> ");
     initKeyboard();
-    uint32_t mod1 = *(uint32_t*)(bootInfo->mods_addr + 4);
-    uint32_t physicalAllocStart = (mod1 + 0xFFF) & ~0xFFF;
-    initMemory(bootInfo->mem_upper * 1024, physicalAllocStart);
 	while(1){
 	}
 }

@@ -7,7 +7,7 @@ MBOOT_FLAGS EQU MBOOT_PAGE_ALIGN | MBOOT_MEM_INFO | MBOOT_USE_GFX
 MBOOT_CHECKSUM EQU -(MBOOT_MAGIC + MBOOT_FLAGS)
 
 section .multiboot
-ALIGN 4
+align 4
     DD MBOOT_MAGIC
     DD MBOOT_FLAGS
     DD MBOOT_CHECKSUM
@@ -18,8 +18,8 @@ ALIGN 4
     DD 600
     DD 32
 
-SECTION .bss
-ALIGN 16
+section .bss
+align 16
 stack_bottom:
     RESB 16384 * 8
 stack_top:
@@ -58,6 +58,7 @@ halt:
 section .data
 align 4096
 global initial_page_dir
+align 4096
 initial_page_dir:
     DD 10000011b
     TIMES 768-1 DD 0
