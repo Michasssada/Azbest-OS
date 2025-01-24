@@ -3,7 +3,7 @@
 #include <stdint.h>
 #include "io/keyboard.h"
 #include "kernel/cpu/idt.h"
-
+#include"misc/util.h"
 
 static const size_t VGA_WIDTH = 80;
 static const size_t VGA_HEIGHT = 25;
@@ -26,19 +26,6 @@ static const char scancode_to_char[] = {
     /* F1 - F12 keys not mapped here for simplicity */
 };
 
-static inline void outw(uint16_t port, uint16_t val) {
-    __asm__ volatile ("outw %0, %1" : : "a"(val), "Nd"(port));
-}
-
-static inline uint8_t inb(uint16_t port) {
-    uint8_t result;
-    __asm__ volatile ("inb %1, %0" : "=a"(result) : "Nd"(port));
-    return result;
-}
-
-static inline void outb(uint16_t port, uint8_t value) {
-    __asm__ volatile ("outb %0, %1" : : "a"(value), "Nd"(port));
-}
 
 /* Keyboard scancode mapping (partial, for simplicity) */
 void clear_buffer(){
@@ -108,8 +95,8 @@ void getInput(char *output){
 
 void keyboard_handler(struct InterruptRegisters *regs) {
     (void)regs;
-    char scancode = inb(0x60) & 0x7F; //What key is pressed
-    char press = inb(0x60) & 0x80; //Press down, or released
+    char scancode = inPortB(0x60) & 0x7F; //What key is pressed
+    char press = inPortB(0x60) & 0x80; //Press down, or released
 
     if (scancode < sizeof(scancode_to_char)) {
         char key = scancode_to_char[scancode];

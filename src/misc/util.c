@@ -18,3 +18,6 @@ char inPortB(uint16_t port){
     asm volatile("inb %1, %0": "=a"(rv):"dN"(port));
     return rv;
 }
+static inline void outw(uint16_t port, uint16_t val) {
+    __asm__ volatile ("outw %0, %1" : : "a"(val), "Nd"(port));
+}
