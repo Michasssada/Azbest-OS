@@ -9,7 +9,7 @@
 #include "kernel/devices/timer.h"
 #include "kernel/memory/multiboot.h"
 
-
+extern void enter();
 void kmain(uint32_t magic, struct multiboot_info* bootInfo);
 
 void kmain(uint32_t magic, struct multiboot_info* bootInfo) 
@@ -27,6 +27,7 @@ void kmain(uint32_t magic, struct multiboot_info* bootInfo)
     terminal_setcolor(10);
     terminal_writestring("> ");
     initKeyboard();
-	while(1){
+    enter();
+    while(1){
 	}
 }

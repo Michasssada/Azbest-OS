@@ -14,8 +14,10 @@ void initGdt(){
     setGdtGate(0,0,0,0,0);
     setGdtGate(1,0,0xFFFFFFFF,0x9A,0xCF);
     setGdtGate(2,0,0xFFFFFFFF,0x92,0xCF);
-    setGdtGate(3,0,0xFFFFFFFF,0xFA,0xCF);
-    setGdtGate(4,0,0xFFFFFFFF,0xF2,0xCF);
+    setGdtGate(3, 0, 0xFFFFFFFF, 0x9A, 0xCF);  // User Code Segment (Ring 3)
+    setGdtGate(4, 0, 0xFFFFFFFF, 0x92, 0xCF);  // User Data Segment (Ring 3)
+
+
     writeTSS(5,0x10, 0x0);
     gdt_flush((uint32_t)&gdt_prt);
     tss_flush();
