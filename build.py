@@ -94,7 +94,7 @@ for i in range(len(asm_to_build)):
 
 
 for i in range(len(files_to_build)):
-    exit_code = os.system(f"i686-elf-gcc -c {os.getcwd() + "/src/" + files_to_build[i]}  -o {"build/"+files_to_build_no_extensions[i]+".o"} -std=gnu99 -ffreestanding -O2 -Wall -Wextra -Iinclude")
+    exit_code = os.system(f"i686-elf-gcc -c {os.getcwd() + "/src/" + files_to_build[i]}  -o {"build/"+files_to_build_no_extensions[i]+".o"} -std=gnu99 -ffreestanding -O2 -Wall -Wextra -Iinclude -Wno-incompatible-pointer-types")
     if exit_code != 0:
         quit()
 print("system built")
