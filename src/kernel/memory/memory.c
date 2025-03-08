@@ -96,26 +96,29 @@ uint32_t pmmAllocPageFrame(){
 
     for (uint32_t b = start; b < end; b++){
         uint8_t byte = physicalMemoryBitmap[b];
-        if (byte == 0xFF){
-            continue;
-        }
+
+        if (byte == 0xFF) continue; // No free bits
 
         for (uint32_t i = 0; i < 8; i++){
             bool used = byte >> i & 1;
-
             if (!used){
-                byte ^= (-1 ^ byte) & (1 << i);
-                physicalMemoryBitmap[b] = byte;
+                // Disable interrupts (on x86)
+                asm volatile("cli");
+
+                // Mark as used
+                physicalMemoryBitmap[b] |= (1 << i);
                 totalAlloc++;
+
+                // Re-enable interrupts
+                asm volatile("sti");
 
                 uint32_t addr = (b * 8 + i) * 0x1000;
                 return addr;
             }
         }
-        
     }
 
-    return 0;
+    return 0; // No available frames
 }
 
 
