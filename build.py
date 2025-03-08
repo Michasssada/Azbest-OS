@@ -70,8 +70,10 @@ if args.nogrub:
 else:
     exit_code = os.system(f"grub-mkrescue --version")
     if exit_code != 0:
-        print("install grub")
-        quit()
+        exit_code = os.system(f"i686-elf-grub-mkrescue --version")
+        if exit_code !=0:
+            print("install grub or i686-elf-grub")
+            quit()
 
 if args.boot:
     os.system("qemu-system-x86_64 --version")
@@ -114,7 +116,7 @@ if args.nogrub:
         os.system("qemu-system-i386 -m 2048 --kernel Azbest_OS.bin")
 else:
     if platform.system() == "Windows":
-        print("you can't use grub-mkrescue on windows add -g flag.")
+        print("you can't use grub-mkrescue on windows add -g flag. will be fixed soon")
         quit()
     exit_code = os.system("mv build/Azbest_OS.bin iso/boot")
     if(exit_code != 0):
@@ -123,8 +125,10 @@ else:
     print("running grub-mkrescue")
     exit_code = os.system("grub-mkrescue -o Azbest_OS.iso iso")
     if(exit_code != 0):
-        print("if you are not on linux use -g flag")
-        quit()
+        exit_code = os.system("i686-elf-grub-mkrescue -o Azbest_OS.iso iso")
+        if exit_code != 0:
+            print("if you are not on linux use -g flag")
+            quit()
     if args.boot:
         os.system("qemu-system-i386 --cdrom Azbest_OS.iso")
 
