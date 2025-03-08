@@ -55,7 +55,6 @@ void handle_keypress(char c) {
 	if (c == '\n') {  // Check if the Enter key was pressed
         // Process the input stored in input_buffer (e.g., print it)
         terminal_writestring("\n");  
-        check_command();
         clear_buffer();         // New line after the input
         input_len = 0;  // Reset input length for new input
         return;  // Don't add the newline character to the buffer

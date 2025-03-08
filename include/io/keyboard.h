@@ -4,7 +4,6 @@
 #include <stddef.h>
 #include "terminal.h"
 #include "stdlib/stdlib.h"
-#include "pseudo_terminal/commands.h"
 #include "defines.h"
 #include "stdlib/stdlib.h"
 void append_char(char* str, char c, size_t* len, size_t max_len);
