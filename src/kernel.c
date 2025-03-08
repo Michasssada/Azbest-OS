@@ -31,6 +31,7 @@ void kmain(uint32_t magic, struct multiboot_info* bootInfo)
     initKeyboard();
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     enter();
     while(1){
 =======
@@ -39,5 +40,9 @@ void kmain(uint32_t magic, struct multiboot_info* bootInfo)
 >>>>>>> a1a371a (modified:   src/kernel.c)
 	while(1){
 >>>>>>> 07ff680 (better mac(and windows probably) support)
+=======
+    enter();
+    while(1){
+>>>>>>> 1cec6df (trying to get to ring 3)
 	}
 }
