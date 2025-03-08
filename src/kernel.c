@@ -29,7 +29,6 @@ void kmain(uint32_t magic, struct multiboot_info* bootInfo)
     terminal_setcolor(10);
     terminal_writestring("> ");
     initKeyboard();
-    printf("%d", 1);
 	while(1){
 	}
 }
