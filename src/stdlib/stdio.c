@@ -8,7 +8,7 @@ void putc(char c){
 
 void puts(const char* s){
     while (*s){
-        terminal_putchar(s);
+        terminal_putchar(*s);
         s++;
     }
 }

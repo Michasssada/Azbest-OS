@@ -8,6 +8,8 @@
 #include "stdlib/stdio.h"
 #include "kernel/devices/timer.h"
 #include "kernel/memory/multiboot.h"
+#include "kernel/memory/kmalloc.h"
+#include "kernel/memory/memory.h"
 
 extern void enter();
 void kmain(uint32_t magic, struct multiboot_info* bootInfo);
@@ -27,7 +29,12 @@ void kmain(uint32_t magic, struct multiboot_info* bootInfo)
     terminal_setcolor(10);
     terminal_writestring("> ");
     initKeyboard();
+<<<<<<< HEAD
     enter();
     while(1){
+=======
+    printf("%d", 1);
+	while(1){
+>>>>>>> 07ff680 (better mac(and windows probably) support)
 	}
 }
