@@ -2,6 +2,11 @@ import os
 import argparse
 import platform
 import shutil
+warning = 0
+while warning < 250000:
+    print("Warning: This script does not work, use build.py instead.")
+    warning += 1
+
 
 parser = argparse.ArgumentParser(description="Example of adding custom flags.")
 parser.add_argument('-b', '--boot', action='store_true', help="boots the os.")
@@ -63,7 +68,7 @@ else:
             quit()
 
 if args.boot:
-    os.system("qemu-system-x86_64 --version")
+    exit_code = os.system("qemu-system-x86_64 --version")
     if exit_code != 0:
         print("install qemu")
         quit()
@@ -80,7 +85,7 @@ for i in range(len(asm_to_build)):
         quit()
 
 for i in range(len(files_to_build)):
-    exit_code = os.system(f"clang -target i686-elf -c {os.getcwd() + '/src/' + files_to_build[i]} -o build/{files_to_build_no_extensions[i]}.o -std=gnu99 -ffreestanding -O2 -Wall -Wextra -Iinclude -Wno-incompatible-pointer-types")
+    exit_code = os.system(f"clang -target i686-elf -c {os.getcwd() + '/src/' + files_to_build[i]} -o build/{files_to_build_no_extensions[i]}.o -std=gnu99 -ffreestanding -O2 -Wall -Wextra -Iinclude -Wno-incompatible-pointer-types -fno-stack-protector -fno-pic")
     if exit_code != 0:
         quit()
 
