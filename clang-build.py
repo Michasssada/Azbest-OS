@@ -3,7 +3,7 @@ import argparse
 import platform
 import shutil
 warning = 0
-while warning < 250000:
+while warning < 15000:
     print("Warning: This script does not work, use build.py instead.")
     warning += 1
 
