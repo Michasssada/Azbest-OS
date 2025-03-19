@@ -28,7 +28,7 @@ section .boot
 
 global _start
 _start:
-    MOV ecx, (initial_page_dir - 0xC0000000)
+    MOV ecx, (initial_page_dir - 0xc0000000)
     MOV cr3, ecx
 
     MOV ecx, cr4
@@ -68,3 +68,4 @@ initial_page_dir:
     DD (2 << 22) | 10000011b
     DD (3 << 22) | 10000011b
     TIMES 256-4 DD 0
+    
