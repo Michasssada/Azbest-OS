@@ -10,9 +10,9 @@ static uint32_t totalAlloc;
 int mem_num_vpages;
 
 #define NUM_PAGES_DIRS 256
-#define NUM_PAGE_FRAMES (0x100000000 / 0x1000 / 8)
+#define NUM_PAGE_FRAMES (0x100000000 / 0x1000)
 
-uint8_t physicalMemoryBitmap[NUM_PAGE_FRAMES / 8]; //Dynamically, bit array
+uint8_t physicalMemoryBitmap[NUM_PAGE_FRAMES / 8];
 
 static uint32_t pageDirs[NUM_PAGES_DIRS][1024] __attribute__((aligned(4096)));
 static uint8_t pageDirUsed[NUM_PAGES_DIRS];
@@ -28,10 +28,10 @@ void pmm_init(uint32_t memLow, uint32_t memHigh){
 uint32_t* memGetCurrentPageDir(){
     uint32_t pd;
     asm volatile("mov %%cr3, %0": "=r"(pd));
-    pd += KERNEL_START;
-
+    pd += KERNEL_START;  // This is incorrect.
     return (uint32_t*) pd;
 }
+
 
 void memChangePageDir(uint32_t* pd){
     pd = (uint32_t*) (((uint32_t)pd)-KERNEL_START);
@@ -130,7 +130,8 @@ void initMemory(uint32_t memHigh, uint32_t physicalAllocStart){
     invalidate(0xFFFFF000);
 
     pmm_init(physicalAllocStart, memHigh);
-    memset(pageDirs, 0, 0x1000 * NUM_PAGES_DIRS);
+   memset(pageDirs, 0, sizeof(pageDirs));
+
     memset(pageDirUsed, 0, NUM_PAGES_DIRS);
 }
 

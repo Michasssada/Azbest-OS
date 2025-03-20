@@ -1,14 +1,25 @@
-; Set up the new segment registers
-global enter
-enter:
-    mov ax, 0x1B        ; User Data Segment
+[BITS 32]               ; Ensure we are in 32-bit mode
+[GLOBAL enterUserMode]  ; Export function for C to call
+
+enterUserMode:
+    ; C passes parameters in registers:
+    ; - userStackTop -> in `eax`
+    ; - userEntryPoint -> in `ebx`
+
+    mov ax, 0x23       ; Load User Data Segment (DPL=3)
     mov ds, ax
     mov es, ax
     mov fs, ax
     mov gs, ax
 
-    mov ax, 0x1A        ; User Code Segment
-    mov cs, ax          ; Far jump to user space code
+    mov esp, eax       ; Set ESP to user stack pointer
 
-    ; Jump to user space code
-    jmp 0x1A:0x100000   ; (Code segment and address of user code)
+    ; Prepare IRET stack frame
+    push 0x23          ; User Data Segment (SS)
+    push esp           ; User Stack Pointer (ESP)
+    pushf              ; Push EFLAGS (interrupts enabled)
+    push 0x1B          ; User Code Segment (CS)
+    push ebx           ; User-space Entry Point (EIP)
+
+    iret               ; Switch to Ring 3
+

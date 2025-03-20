@@ -10,8 +10,8 @@
 #include "kernel/memory/multiboot.h"
 #include "kernel/memory/kmalloc.h"
 #include "kernel/memory/memory.h"
+extern void enterUserMode(uint32_t userStackTop, void* userEntryPoint);
 
-extern void enter();
 void kmain(uint32_t magic, struct multiboot_info* bootInfo);
 
 void kmain(uint32_t magic, struct multiboot_info* bootInfo) 
@@ -29,9 +29,12 @@ void kmain(uint32_t magic, struct multiboot_info* bootInfo)
     terminal_setcolor(10);
     terminal_writestring("> ");
     initKeyboard();
-    enter();
     printf("%d", 1);
-    enter();
+    uint32_t userStackTop = 0xBFFFF000;  // 🚀 Make sure this address is mapped!
+    void* userEntryPoint = (void*)0x400000;  // 🚀 Make sure this is a valid instruction!
+
+
+    enterUserMode(userStackTop, userEntryPoint);  // Pass arguments to ASM
     while(1){
 
 	}
